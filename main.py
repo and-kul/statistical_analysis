@@ -5,7 +5,7 @@ from measures import Measures
 from project_info import ProjectInfo
 import psycopg2
 import db_helpers as db
-import output
+import project_output
 
 
 
@@ -20,9 +20,9 @@ def main():
         project_info = ProjectInfo(1)
         db.fill_basic_project_info(conn, project_info)
         print(project_info)
-        output.print_java_info(conn, project_info)
-        output.print_cpp_info(conn, project_info)
-        output.print_cs_info(conn, project_info)
+        project_output.print_java_info(conn, project_info)
+        project_output.print_cpp_info(conn, project_info)
+        project_output.print_cs_info(conn, project_info)
 
 
 

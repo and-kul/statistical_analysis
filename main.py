@@ -1,17 +1,13 @@
-from typing import List
-
+import language_output
 from config import Config
-from measures import Measures
+
 from project_info import ProjectInfo
 import psycopg2
 import db_helpers as db
 import project_output
 
 
-
-
 def main():
-
     conn = None
     try:
         conn_params = Config.get_postgresql_conn_parameters()
@@ -23,17 +19,17 @@ def main():
         project_output.print_java_info(conn, project_info)
         project_output.print_cpp_info(conn, project_info)
         project_output.print_cs_info(conn, project_info)
+        print()
 
+        language_output.print_java_info(conn)
+        language_output.print_cpp_info(conn)
+        language_output.print_cs_info(conn)
 
 
     finally:
         if conn is not None:
             conn.close()
         print("connection_closed")
-
-
-
-
 
     exit(0)
 

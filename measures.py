@@ -21,8 +21,9 @@ class Measures:
         return result
 
     def __str__(self):
-        return "average = {0};  st_dev = {1};  median = {2};  min = {3};  max = {4}".format(self.average,
-                                                                                            self.standard_deviation,
-                                                                                            self.median,
-                                                                                            self.min,
-                                                                                            self.max)
+        return "average = {0:.2f};  st_dev = {1:.2f};  median = {2};  min = {3};  max = {4}" \
+            .format(self.average,
+                    self.standard_deviation,
+                    self.median,
+                    self.min,
+                    self.max)

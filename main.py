@@ -13,17 +13,11 @@ def main():
         conn_params = Config.get_postgresql_conn_parameters()
         conn = psycopg2.connect(**conn_params)
 
-        project_info = ProjectInfo(1)
-        db.fill_basic_project_info(conn, project_info)
-        print(project_info)
-        project_output.print_java_info(conn, project_info)
-        project_output.print_cpp_info(conn, project_info)
-        project_output.print_cs_info(conn, project_info)
-        print()
 
-        language_output.print_java_info(conn)
         language_output.print_cpp_info(conn)
+        language_output.print_java_info(conn)
         language_output.print_cs_info(conn)
+
 
 
     finally:

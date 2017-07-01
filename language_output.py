@@ -3,7 +3,7 @@ import db_helpers as db
 
 
 def print_java_info(conn):
-    print("Overall Java:")
+    print("Overall Java (files = {0}:".format(db.get_number_of_files(conn, "Java")))
     print("\tCyclomatic complexity per method:")
     print("\t" + str(Measures.from_data(db.get_all_functions_ccn(conn, "Java"))))
 
@@ -25,7 +25,8 @@ def print_java_info(conn):
 
 
 def print_cpp_info(conn):
-    print("Overall C++:")
+    print("Overall C++ (files = {0}):".format(db.get_number_of_files(conn, "C++")
+                                              + db.get_number_of_files(conn, "C/C++ Header")))
     print("\tCyclomatic complexity per function:")
     print("\t" + str(Measures.from_data(db.get_all_functions_ccn(conn, "C++")
                                         + db.get_all_functions_ccn(conn, "C/C++ Header"))))
@@ -53,7 +54,7 @@ def print_cpp_info(conn):
 
 
 def print_cs_info(conn):
-    print("Overall C#:")
+    print("Overall C# (files = {0}):".format(db.get_number_of_files(conn, "C#")))
     print("\tCyclomatic complexity per method:")
     print("\t" + str(Measures.from_data(db.get_all_functions_ccn(conn, "C#"))))
 

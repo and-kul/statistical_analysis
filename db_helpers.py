@@ -13,6 +13,19 @@ def fill_basic_project_info(conn, project_info: ProjectInfo):
     cur.close()
 
 
+def get_number_of_files(conn, language_name: str, project_info: ProjectInfo = None) -> int:
+    select_sql = """SELECT count(*) FROM files WHERE language_name = %s AND project_id = %s"""
+    select_sql_for_language = """SELECT count(*) FROM files WHERE language_name = %s"""
+    cur = conn.cursor()
+    if project_info is not None:
+        cur.execute(select_sql, (language_name, project_info.id))
+    else:
+        cur.execute(select_sql_for_language, (language_name,))
+    result = cur.fetchone()
+    cur.close()
+    return result[0]
+
+
 def get_all_functions_ccn(conn, language_name: str, project_info: ProjectInfo = None) -> List[int]:
     select_sql = """SELECT cyclomatic_complexity FROM functions
 WHERE file_id in (SELECT id FROM files WHERE language_name = %s AND project_id = %s)"""
